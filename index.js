@@ -47,10 +47,14 @@ app.post("/phonecall/incoming", function (req, res) {
 
     console.log("phonecall:", phoneCall)
 
+    //Figure out who the call is for and what instructions they have for the answerer
+
+    
+
     //Figure out who to forward the call to.
     res.send(`<Response>
                 <Dial callerId="14155318437">
-                    <Number>+18019716820</Number>
+                    <Number>+14355122398</Number>
                 </Dial>
             </Response>`);
 });
