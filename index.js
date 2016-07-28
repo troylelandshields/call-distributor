@@ -45,11 +45,9 @@ app.listen(app.get('port'), function () {
 app.post("/phonecall/incoming", function (req, res) {
     var phoneCall = req.body;
 
-    console.log("phonecall:", phoneCall)
+    console.log("req:", req)
 
     //Figure out who the call is for and what instructions they have for the answerer
-
-    
 
     //Figure out who to forward the call to.
     res.send(`<Response>
