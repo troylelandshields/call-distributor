@@ -1,0 +1,132 @@
+{
+    "users": {
+        "twitter:123": {
+            "entityID": "entity123",
+            "logins": 3,
+            "username":"coolguy",
+            "type": "admin"
+        },
+        "twitter:345": {
+            "entityID": "entity123",
+            "logins": 1,
+            "username": "coolgal",
+            "type": "admin"
+        },
+        "twitter:999": {
+            "logins": 1,
+            "username": "a-mom",
+            "type": "answerer"
+        }
+    },
+    "entities": {
+        "entity123": {
+            "name":"lazy-a-holes",
+            "phoneNumber":"18882346655",
+            "users": {
+                "twitter:123":true,
+                "twitter:345":true
+            },
+            "schedules": {
+                "scheduleA":true,
+                "scheduleB":true
+            },
+            "defaultAction": "action3"
+        }
+    },
+    "answerers": {
+        "answerer1": {
+            "userID": "twitter:999",
+            "phoneNumber": "18882348877",
+            "currentRating": 5,
+            "availabilitity":true,
+            "phonecalls": {
+                "phonecall1":true
+            }
+        }
+    },
+    "phonenumbers":{
+        "18882346655": {
+            "type": "landline",
+            "owner": "entity123",
+            "ownerType":"entity"
+        },
+        "18882348877": {
+            "type": "cell",
+            "owner": "answerer1",
+            "ownerType":"answerer"
+        }
+    },
+    "prompts": {
+        "promptA": {
+            "entityID": "entity123",
+            "actions": {
+                "action1":true
+            },
+            "text": "Please find out if it's a real emergency. If it is, forward it to my cell phone 321-489-9894."
+        },
+        "promptB": {
+            "entityID": "entity123",
+            "actions": {
+                "action2":true
+            },
+            "text": "Tell them to go to hell and stop calling past 11."
+        }
+    },
+    "phonecalls": {
+        "phonecall1": {
+            "from":"9098761234",
+            "to":"18882346655",
+            "answererID":"twitter:999",
+            "entityID":"entity123",
+            "startTime":0,
+            "endTime":3000,
+            "answerer":"answerer1",
+            "centsEarned":"432",
+            "status":"completed",
+            "actionExecuted":"action1",
+            "response":"response1"
+        }
+    },
+    "responses": {
+        "response1": {
+            "phonecall":"phonecall1",
+            "text": "Mrs. Johnson would like you to call her first thing in the morning at 849-293-2948."
+        }
+    },
+    "schedules": {
+        "scheduleA": {
+            "entityID":"entity123",
+            "startTime":"1700",
+            "endTime":"2300",
+            "daysOfWeek":"0111110",
+            "action":"action1"
+        },
+        "scheduleB": {
+            "entityID":"entity123",
+            "startTime":"2300",
+            "endTime":"300",
+            "daysOfWeek":"1111111",
+            "action":"action2"
+        }
+    },
+    "actions": {
+        "action1": {
+            "type":"answerer",
+            "ratedAtLeast":4.5,
+            "prompt":"promptA",
+            "entityID":"entity123",
+            "maxTime": 20
+        },
+        "action2": {
+            "type":"answerer",
+            "ratedAtLeast":2,
+            "prompt":"promptB",
+            "entityID":"entity123",
+            "maxTime": 3
+        },
+        "action3": {
+            "type":"transfer",
+            "mailbox":"9892345454"
+        }
+    }
+}
