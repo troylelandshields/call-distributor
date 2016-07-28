@@ -43,17 +43,21 @@ app.listen(app.get('port'), function () {
 });
 
 app.post("/phonecall/incoming", function (req, res) {
-    var phoneCall = req.params;
+    var phoneCall = req.query;
 
     console.log("phoneCall:", phoneCall)
 
     //Figure out who the call is for and what instructions they have for the answerer
 
     //Figure out who to forward the call to.
+    // res.send(`<Response>
+    //             <Dial callerId="14155318437">
+    //                 <Number>+14355122398</Number>
+    //             </Dial>
+    //         </Response>`);
+
     res.send(`<Response>
-                <Dial callerId="14155318437">
-                    <Number>+14355122398</Number>
-                </Dial>
+                <Reject />
             </Response>`);
 });
 
