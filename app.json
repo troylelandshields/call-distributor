@@ -1,7 +1,7 @@
 {
   "name": "call distributor",
   "description": "distributes calls",
-  "repository": "",
+  "repository": "https://github.com/troylelandshields/call-distributor",
   "logo": "",
   "keywords": [],
   "image": "heroku/nodejs"
