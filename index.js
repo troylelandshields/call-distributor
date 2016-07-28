@@ -9,11 +9,12 @@ app.listen(app.get('port'), function () {
 });
 
 //TODO: For now these are just configured in the environment variables, but really both of these will come from service calls
-var fromNum = process.env.fromNum || "8885551234"
-var toNum = process.env.toNum || "8885552345"
+var fromNum = process.env.FROM_NUM
+var toNum = process.env.TO_NUM
 console.log("configured fromNum:", fromNum);
 console.log("configured toNum:", toNum);
 
+//Endpoint that is called when a new phone call comes in
 app.post("/phonecall/incoming", function (req, res) {
 
     //TODO: get list of available answerers
