@@ -45,9 +45,9 @@ app.listen(app.get('port'), function () {
 app.post("/phonecall/incoming", function (req, res) {
     var phoneCall = req.body;
 
-    //Figure out who to forward the call to.
-    
+    console.log("phonecall:", phoneCall)
 
+    //Figure out who to forward the call to.
     res.send(`<Response>
                 <Dial callerId="14155318437">
                     <Number>+18019716820</Number>
