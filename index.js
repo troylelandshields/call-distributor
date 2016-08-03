@@ -1,6 +1,20 @@
 
 var express = require('express');
 var app = express();
+var firebase = require("firebase");
+
+var config = {
+    apiKey: "AIzaSyANdTshfeci78-VI-m-NaGHu4BWMIMSn0U",
+    authDomain: "call-distributor-dev.firebaseapp.com",
+    databaseURL: "https://call-distributor-dev.firebaseio.com",
+    storageBucket: "call-distributor-dev.appspot.com",
+};
+firebase.initializeApp(config);
+
+firebase.child("answerers").on("value", function(snapshot){
+    console.log("val:", snapshot);
+});
+
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -18,6 +32,7 @@ console.log("configured toNum:", toNum);
 app.post("/phonecall/incoming", function (req, res) {
 
     //TODO: get list of available answerers
+
     //TODO: Figure out what target entity the caller is trying to reach and if the phone should be answered right now
     //TODO: SMS instructions on how to handle call to answerer
 

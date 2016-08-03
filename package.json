@@ -7,12 +7,12 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "twilio": "^3.0.0-rc.5",
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "firebase": "^3.2.1",
+    "twilio": "^3.0.0-rc.5"
   },
   "devDependencies": {},
   "author": "",
   "license": "ISC"
 }
-
