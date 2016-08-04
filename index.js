@@ -15,14 +15,6 @@ var toNum = process.env.TO_NUM
 console.log("configured fromNum:", fromNum);
 console.log("configured toNum:", toNum);
 
-answerers.getAnswerer().then(function (a) {
-    console.log("answerer:", a)
-});
-
-answerers.getAnswerer().then(function (a) {
-    
-});
-
 //Endpoint that is called when a new phone call comes in
 app.post("/phonecall/incoming", function (req, res) {
 
