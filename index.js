@@ -9,12 +9,13 @@ var config = {
     databaseURL: "https://call-distributor-dev.firebaseio.com",
     storageBucket: "call-distributor-dev.appspot.com",
 };
+
 firebase.initializeApp(config);
 
 f = firebase.database().ref();
 
 f.child("answerers").on("value", function(snapshot){
-    console.log("val:", snapshot);
+    console.log("val:", snapshot.val());
 });
 
 
