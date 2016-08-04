@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var answerers = require('./answerers.js')
 var friends = require('./friends.js')
+var phonecalls = require('./phonecalls.js')
 var url = require('url');
 var bodyParser = require('body-parser');
 
@@ -36,15 +37,21 @@ app.post("/phonecall/incoming", function (req, res) {
 
     //When all promises are resolved, forward call
     Promise.all([answererPrm, friendPrm]).then(function (values) {
-        answerer = values[0]
-        friend = values[1]
+        answerer = values[0];
+        friend = values[1];
 
-        var answererPhoneNum = answerer.phoneNumber
+        var answererPhoneNum = answerer.phoneNumber;
+        console.log("Directing phone call to:", answererPhoneNum);
 
-        console.log("Directing phone call to:", answererPhoneNum)
+        phonecalls.log({
+            answerer:answerer.id,
+            friend:friend.id,
+            // startTime: Date.now(),
+            phoneCallData:phoneCallData
+        });
 
         res.send(`<Response>
-                    <Dial callerId="Lindsay">
+                    <Dial callerId="Lindsay" action="/phonecall/ended">
                         <Number>+`+ answererPhoneNum + `</Number>
                     </Dial>
                 </Response>`);
@@ -56,5 +63,10 @@ app.post("/phonecall/incoming", function (req, res) {
     })
 
     
+});
+
+app.post("/phonecall/ended", function (req, res) {
+    console.log("data:", req.body);
+    console.log("query:", req.query);
 });
 

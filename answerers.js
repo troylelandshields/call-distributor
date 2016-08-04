@@ -1,17 +1,28 @@
 var _ = require('lodash');
 var f = require('./call-dist-firebase.js')
 
+//This is all the worst
 var answererQueue = []
 
 var listen = function() {
     f.child("answerers").on("value", function(snapshot){
-        answererQueue = _.values(snapshot.val())
+        answererQueue = [];
+        snapshot.forEach(function(childSnapshot){
+            var a = childSnapshot.val();
+            a.id = childSnapshot.key;
+            answererQueue.push(a);
+        });
     });
 }
 
 var initPromise = new Promise(function (resolve, reject) {
     f.child("answerers").once("value").then(function (snapshot) {
-        answererQueue = _.values(snapshot.val())
+        answererQueue = [];
+        snapshot.forEach(function(childSnapshot){
+            var a = childSnapshot.val();
+            a.id = childSnapshot.key;
+            answererQueue.push(a);
+        });
       
         resolve(answererQueue);
 
@@ -25,6 +36,7 @@ function getAnswerer() {
         initPromise.then(function (snapshot) {
             numAnswerers = answererQueue.length
             answererIndex = Math.floor(Math.random() * numAnswerers);
+            console.log("Resolving answerer.")
             resolve(answererQueue[answererIndex]);
         });
     });

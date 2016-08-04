@@ -9,7 +9,9 @@ function getFriend(phoneNum) {
             if (phoneNumberData.ownerType == 'entity') {
                 f.child('entities/'+phoneNumberData.owner).once('value').then(function(snapshot){
                     ownerData = snapshot.val();
+                    ownerData.id = snapshot.key;
 
+                    console.log("Resolving friend.")
                     resolve(ownerData);
                 });
             } else {
