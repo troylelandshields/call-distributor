@@ -1,24 +1,11 @@
-firebase = require('firebase')
 var _ = require('lodash');
-
-
-var config = {
-    apiKey: "AIzaSyANdTshfeci78-VI-m-NaGHu4BWMIMSn0U",
-    authDomain: "call-distributor-dev.firebaseapp.com",
-    databaseURL: "https://call-distributor-dev.firebaseio.com",
-    storageBucket: "call-distributor-dev.appspot.com",
-};
-
-firebase.initializeApp(config);
-
-f = firebase.database().ref();
+var f = require('./call-dist-firebase.js')
 
 var answererQueue = []
 
 var listen = function() {
     f.child("answerers").on("value", function(snapshot){
         answererQueue = _.values(snapshot.val())
-        console.log(answererQueue);
     });
 }
 

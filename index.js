@@ -11,9 +11,7 @@ app.listen(app.get('port'), function () {
 
 //TODO: For now these are just configured in the environment variables, but really both of these will come from service calls
 var fromNum = process.env.FROM_NUM
-var toNum = process.env.TO_NUM
 console.log("configured fromNum:", fromNum);
-console.log("configured toNum:", toNum);
 
 //Endpoint that is called when a new phone call comes in
 app.post("/phonecall/incoming", function (req, res) {
@@ -22,6 +20,8 @@ app.post("/phonecall/incoming", function (req, res) {
     answererPrm = answerers.getAnswerer()
 
     //TODO: Figure out what target entity the caller is trying to reach and if the phone should be answered right now
+    
+
     //TODO: SMS instructions on how to handle call to answerer
 
     //When answerer is returned, forward call
