@@ -13,21 +13,18 @@ app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));
 });
 
-//TODO: For now these are just configured in the environment variables, but really both of these will come from service calls
-var fromNum = process.env.FROM_NUM
-console.log("configured fromNum:", fromNum);
-
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodi
 
 //Endpoint that is called when a new phone call comes in
 app.post("/phonecall/incoming", function (req, res) {
-    var urlParts = url.parse(req.url, true);
-    console.log('url parts:', urlParts)
-    console.log('req.body', req.body)
+    var phoneCallData = req.body;
+    console.log("Phone call:", phoneCallData);
+
+    var recipientNum = phoneCallData.To;
 
     //TODO figure out howt o get the phone number for the business from the call
-    var associatedPhoneNumber = fromNum
+    var associatedPhoneNumber = recipientNum
 
     //get a promise for an answerer 
     answererPrm = answerers.getAnswerer()
