@@ -43,16 +43,16 @@ app.post("/phonecall/incoming", function (req, res) {
 
         console.log("Directing phone call to:", answererPhoneNum)
 
-        // res.send(`<Response>
-        //             <Dial callerId="` + fromNum + `">
-        //                 <Number>+`+ answererPhoneNum + `</Number>
-        //             </Dial>
-        //         </Response>`);
+        res.send(`<Response>
+                    <Dial callerId="Lindsay">
+                        <Number>+`+ answererPhoneNum + `</Number>
+                    </Dial>
+                </Response>`);
 
         //Use this to test receiving a phonecall without being charged
-        res.send(`<Response>
-                    <Reject />
-                </Response>`);
+        // res.send(`<Response>
+        //             <Reject />
+        //         </Response>`);
     })
 
     
