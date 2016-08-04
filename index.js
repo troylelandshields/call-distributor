@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var answerers = require('./answerers.js')
 var friends = require('./friends.js')
+var url = require('url');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -16,6 +17,9 @@ console.log("configured fromNum:", fromNum);
 
 //Endpoint that is called when a new phone call comes in
 app.post("/phonecall/incoming", function (req, res) {
+    var urlParts = url.parse(req.url, true);
+    console.log('url parts:', urlParts)
+
     //TODO figure out howt o get the phone number for the business from the call
     var associatedPhoneNumber = fromNum
 
