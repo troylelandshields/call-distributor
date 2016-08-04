@@ -19,6 +19,7 @@ console.log("configured fromNum:", fromNum);
 app.post("/phonecall/incoming", function (req, res) {
     var urlParts = url.parse(req.url, true);
     console.log('url parts:', urlParts)
+    console.log('req.body', req.body)
 
     //TODO figure out howt o get the phone number for the business from the call
     var associatedPhoneNumber = fromNum
