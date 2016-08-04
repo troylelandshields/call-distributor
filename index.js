@@ -4,6 +4,8 @@ var app = express();
 var answerers = require('./answerers.js')
 var friends = require('./friends.js')
 var url = require('url');
+var bodyParser = require('body-parser');
+
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -14,6 +16,9 @@ app.listen(app.get('port'), function () {
 //TODO: For now these are just configured in the environment variables, but really both of these will come from service calls
 var fromNum = process.env.FROM_NUM
 console.log("configured fromNum:", fromNum);
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodi
 
 //Endpoint that is called when a new phone call comes in
 app.post("/phonecall/incoming", function (req, res) {
