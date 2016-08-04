@@ -23,7 +23,7 @@
             "name":"lazy-a-holes",
             "phoneNumber":{
                 "18882346655":true,
-                "14155318437":true
+                "14352222772":true
             },
             "users": {
                 "twitter:123":true,
@@ -48,6 +48,11 @@
         }
     },
     "phonenumbers":{
+        "14352222772": {
+            "type": "mobile",
+            "owner": "entity123",
+            "ownerType":"entity"
+        },
         "18882346655": {
             "type": "landline",
             "owner": "entity123",

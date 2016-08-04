@@ -30,7 +30,7 @@ app.post("/phonecall/incoming", function (req, res) {
     answererPrm = answerers.getAnswerer()
 
     //TODO: Figure out what target entity the caller is trying to reach and if the phone should be answered right now
-    friendPrm = friends.getFriend(associatedPhoneNumber)
+    friendPrm = friends.getFriend(associatedPhoneNumber.replace("+", ""))
 
     //TODO: SMS instructions on how to handle call to answerer
 
