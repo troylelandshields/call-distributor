@@ -21,7 +21,10 @@
     "entities": {
         "entity123": {
             "name":"lazy-a-holes",
-            "phoneNumber":"18882346655",
+            "phoneNumber":{
+                "18882346655":true,
+                "14155318437":true
+            },
             "users": {
                 "twitter:123":true,
                 "twitter:345":true

@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var answerers = require('./answerers.js')
+var friends = require('./friends.js')
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -15,17 +16,22 @@ console.log("configured fromNum:", fromNum);
 
 //Endpoint that is called when a new phone call comes in
 app.post("/phonecall/incoming", function (req, res) {
+    //TODO figure out howt o get the phone number for the business from the call
+    var associatedPhoneNumber = fromNum
 
     //get a promise for an answerer 
     answererPrm = answerers.getAnswerer()
 
     //TODO: Figure out what target entity the caller is trying to reach and if the phone should be answered right now
-    
+    friendPrm = friends.getFriend(associatedPhoneNumber)
 
     //TODO: SMS instructions on how to handle call to answerer
 
-    //When answerer is returned, forward call
-    answererPrm.then(function (answerer) {
+    //When all promises are resolved, forward call
+    Promise.all([answererPrm, friendPrm]).then(function (values) {
+        answerer = values[0]
+        friend = values[1]
+
         var answererPhoneNum = answerer.phoneNumber
 
         console.log("Directing phone call to:", answererPhoneNum)
