@@ -93,6 +93,8 @@ app.post("/text/incoming", function (req, res) {
     if (req.body.Body === "dtph") {
         console.log('we are totally Down to Phone')
 
+        answerers.setAvailable(req.body.From.replace("+", ""));
+
         res.send(`<Response>
                 <Message to="`+ req.body.From + `" from="+14352222772">
                     ok, you should get calls very soon! 
