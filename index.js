@@ -90,11 +90,11 @@ app.post("/text/incoming", function (req, res) {
     console.log('response', res.data);
     console.log('request', req.body);
 
-    if (req.Body === "dtph") {
+    if (req.body.Body === "dtph") {
         console.log('we are totally Down to Phone')
 
         res.send(`<Response>
-                <Message to="`+ req.From + `" from="+14352222772">
+                <Message to="`+ req.body.From + `" from="+14352222772">
                     ok, you should get calls very soon! 
                 </Message>
             </Response>`);
