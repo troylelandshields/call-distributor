@@ -44,14 +44,14 @@ app.post("/phonecall/incoming", function (req, res) {
         console.log("Directing phone call to:", answererPhoneNum);
 
         logRefUrl = phonecalls.log({
-            answerer:answerer.id,
-            friend:friend.id,
-            // startTime: Date.now(),
-            phoneCallData:phoneCallData
+            answerer: answerer.id,
+            friend: friend.id,
+            startTime: Date.now(),
+            phoneCallData: phoneCallData
         });
 
         res.send(`<Response>
-                    <Dial callerId="Lindsay" action="/phonecall/ended?` + encodeURIComponent(logRefUrl) + `">
+                    <Dial callerId="Lindsay" action="/phonecall/ended?log=` + encodeURIComponent(logRefUrl) + `">
                         <Number>+`+ answererPhoneNum + `</Number>
                     </Dial>
                 </Response>`);
@@ -65,6 +65,13 @@ app.post("/phonecall/incoming", function (req, res) {
 
 app.post("/phonecall/ended", function (req, res) {
     console.log("data:", req.body);
-    console.log("query:", req.query);
+    console.log("query:", req.query.log);
+    var calllog = req.query.log;
+
+    if (calllog) {
+        phonecalls.ended(calllog, {
+            endTime: Date.now()
+        });
+    }
 });
 
