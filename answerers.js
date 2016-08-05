@@ -33,8 +33,10 @@ function getAnswerer() {
 }
 
 function setAvailable(phoneNum) {
+    console.log("getting phone number data for", phoneNum);
     f.child('phonenumbers').child(phoneNum).once('value').then(function (snapshot) {
         phoneNumberData = snapshot.val();
+        console.log("got phone number data", phoneNumberData);
 
         if (phoneNumberData.ownerType == 'answerer') {
             console.log("Setting avaliable", phoneNumberData.owner);
