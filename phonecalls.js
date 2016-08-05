@@ -11,8 +11,7 @@ function log(callLog) {
 }
 
 function ended(key, data) {
-    console.log(key, data)
-    // f.child('phonecalls/'+logUrl)
+    f.child('phonecalls').child(key).child('ended').set(data.endTime);
 }
 
 module.exports = {

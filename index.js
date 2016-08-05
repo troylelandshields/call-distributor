@@ -64,8 +64,6 @@ app.post("/phonecall/incoming", function (req, res) {
 });
 
 app.post("/phonecall/ended", function (req, res) {
-    console.log("data:", req.body);
-    console.log("query:", req.query);
     var calllog = req.query.log;
 
     if (calllog) {
