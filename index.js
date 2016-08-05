@@ -43,7 +43,7 @@ app.post("/phonecall/incoming", function (req, res) {
         var answererPhoneNum = answerer.phoneNumber;
         console.log("Directing phone call to:", answererPhoneNum);
 
-        phonecalls.log({
+        logRefUrl = phonecalls.log({
             answerer:answerer.id,
             friend:friend.id,
             // startTime: Date.now(),
@@ -51,9 +51,8 @@ app.post("/phonecall/incoming", function (req, res) {
         });
 
         res.send(`<Response>
-                    <Dial callerId="Lindsay" action="/phonecall/ended">
+                    <Dial callerId="Lindsay" action="/phonecall/ended?` + encodeURIComponent(logRefUrl) + `">
                         <Number>+`+ answererPhoneNum + `</Number>
-                        <Number>+`+ '14155318437' + `</Number>
                     </Dial>
                 </Response>`);
 
@@ -61,9 +60,7 @@ app.post("/phonecall/incoming", function (req, res) {
         // res.send(`<Response>
         //             <Reject />
         //         </Response>`);
-    })
-
-    
+    });
 });
 
 app.post("/phonecall/ended", function (req, res) {
