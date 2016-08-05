@@ -43,9 +43,6 @@ app.post("/phonecall/incoming", function (req, res) {
         var answererPhoneNum = answerer.phoneNumber;
         console.log("Directing phone call to:", answererPhoneNum);
 
-
-        // text(answererPhoneNum);
-
         var promptPromise = friends.getPrompt(friend.prompt);
         promptPromise.then(function (prompt) {
 
