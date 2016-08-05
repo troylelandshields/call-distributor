@@ -43,6 +43,8 @@ app.post("/phonecall/incoming", function (req, res) {
         var answererPhoneNum = answerer.phoneNumber;
         console.log("Directing phone call to:", answererPhoneNum);
 
+        // text(answererPhoneNum);
+
         logRefUrl = phonecalls.log({
             answerer: answerer.id,
             friend: friend.id,
@@ -51,8 +53,11 @@ app.post("/phonecall/incoming", function (req, res) {
         });
 
         res.send(`<Response>
+                    <Message to="14155318437" from="COlton">
+sup brich
+                    </Message>
                     <Dial callerId="Lindsay" action="/phonecall/ended?log=` + encodeURIComponent(logRefUrl) + `">
-                        <Number>+`+ answererPhoneNum + `</Number>
+                        <Number statusCallbackEvent="answered" statusCallback="/phonecall/answered?" statusCallbackMethod="POST">+`+ answererPhoneNum + `</Number>
                     </Dial>
                 </Response>`);
 
@@ -71,5 +76,11 @@ app.post("/phonecall/ended", function (req, res) {
             endTime: Date.now()
         });
     }
+});
+
+app.post("/phonecall/answered", function (req, res) {
+    var calllog = req.query.log;
+    console.log('response',res.data);
+    console.log('request',req.body);
 });
 
