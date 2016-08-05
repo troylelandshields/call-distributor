@@ -82,8 +82,11 @@ app.post("/phonecall/ended", function (req, res) {
 });
 
 app.post("/phonecall/answered", function (req, res) {
-    var calllog = req.query.log;
     console.log('response', res.data);
     console.log('request', req.body);
 });
 
+app.post("/text/incoming", function (req, res) {
+    console.log('response', res.data);
+    console.log('request', req.body);
+});
