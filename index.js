@@ -43,28 +43,34 @@ app.post("/phonecall/incoming", function (req, res) {
         var answererPhoneNum = answerer.phoneNumber;
         console.log("Directing phone call to:", answererPhoneNum);
 
+
         // text(answererPhoneNum);
 
-        logRefUrl = phonecalls.log({
-            answerer: answerer.id,
-            friend: friend.id,
-            startTime: Date.now(),
-            phoneCallData: phoneCallData
+        var promptPromise = friends.getPrompt(friend.prompt);
+        promptPromise.then(function (prompt) {
+
+
+            logRefUrl = phonecalls.log({
+                answerer: answerer.id,
+                friend: friend.id,
+                startTime: Date.now(),
+                phoneCallData: phoneCallData
+            });
+
+            res.send(`<Response>
+                        <Sms to="+`+ answererPhoneNum + `" from="+14352222772">
+                            `+ prompt.text + `
+                        </Sms>
+                        <Dial callerId="Lindsay" action="/phonecall/ended?log=` + encodeURIComponent(logRefUrl) + `">
+                            <Number statusCallbackEvent="answered" statusCallback="/phonecall/answered?" statusCallbackMethod="POST">+`+ answererPhoneNum + `</Number>
+                        </Dial>
+                    </Response>`);
+
+            //Use this to test receiving a phonecall without being charged
+            // res.send(`<Response>
+            //             <Reject />
+            //         </Response>`);
         });
-
-        res.send(`<Response>
-                    <Sms to="+14155318437" from="+14352222772">
-                        sup birch
-                    </Sms>
-                    <Dial callerId="Lindsay" action="/phonecall/ended?log=` + encodeURIComponent(logRefUrl) + `">
-                        <Number statusCallbackEvent="answered" statusCallback="/phonecall/answered?" statusCallbackMethod="POST">+`+ answererPhoneNum + `</Number>
-                    </Dial>
-                </Response>`);
-
-        //Use this to test receiving a phonecall without being charged
-        // res.send(`<Response>
-        //             <Reject />
-        //         </Response>`);
     });
 });
 
@@ -80,7 +86,7 @@ app.post("/phonecall/ended", function (req, res) {
 
 app.post("/phonecall/answered", function (req, res) {
     var calllog = req.query.log;
-    console.log('response',res.data);
-    console.log('request',req.body);
+    console.log('response', res.data);
+    console.log('request', req.body);
 });
 

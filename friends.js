@@ -23,6 +23,20 @@ function getFriend(phoneNum) {
     return friendPromise;
 }
 
+
+
+function getPrompt(promptID) {
+    promptPromise = new Promise(function (resolve, reject) {
+        f.child('prompts/' + promptID).once('value').then(function (snapshot) {
+            console.log("getting the prompt from firebase");
+            resolve(snapshot.val());
+        });
+    });
+
+    return promptPromise;
+}
+
 module.exports = {
-    getFriend: getFriend
+    getFriend: getFriend,
+    getPrompt: getPrompt
 };
