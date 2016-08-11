@@ -14,6 +14,7 @@ var newAnswererQueue = new Queue(ref, options, function (data, progress, resolve
   // Read and process task data
   console.log(data);
 
+  //TODO validate the phone number
   if (!data.phoneNumber) {
     console.log("rejecting");
     reject("Invalid data")
