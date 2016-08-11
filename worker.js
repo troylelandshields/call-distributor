@@ -20,20 +20,28 @@ var newAnswererQueue = new Queue(ref, options, function (data, progress, resolve
     return
   }
 
-  var answerer = {
-    availability: false,
-    phoneNumber: data.phoneNumber
-  }
+  f.child("phonenumbers").child(data.phoneNumber).once("value").then(function (snapshot) {
+    if (snapshot.exists()) {
+      console.log("Phone number exists!")
+      reject("phone number exists")
+      return
+    }
 
-  var phoneNumber = {
-    ownerType: "answerer"
-  }
+    var answerer = {
+      availability: false,
+      phoneNumber: data.phoneNumber
+    }
 
-  var answererKey = f.child("answerers").push(answerer).key;
+    var phoneNumber = {
+      ownerType: "answerer"
+    }
 
-  phoneNumber.owner = answererKey
-  f.child("phonenumbers").child(data.phoneNumber).set(phoneNumber)
+    var answererKey = f.child("answerers").push(answerer).key;
 
-  resolve();
+    phoneNumber.owner = answererKey
+    f.child("phonenumbers").child(data.phoneNumber).set(phoneNumber)
+
+    resolve();
+  });
 });
 
