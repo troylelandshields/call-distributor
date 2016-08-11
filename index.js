@@ -6,6 +6,7 @@ var friends = require('./friends.js')
 var phonecalls = require('./phonecalls.js')
 var url = require('url');
 var bodyParser = require('body-parser');
+var worker = require('./worker.js')
 
 
 app.set('port', (process.env.PORT || 5000));
