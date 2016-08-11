@@ -2,6 +2,7 @@
     "new_answerer": {
         "timeout": 5000,
         "error_state": "error",
-        "in_progress_state": "in_progress"
+        "in_progress_state": "in_progress",
+        "start_state":"new_answerer"
     }
 }
