@@ -42,7 +42,6 @@ var newAnswererQueue = new Queue(ref, options, function (data, progress, resolve
     phoneNumber.owner = answererKey
     f.child("phonenumbers").child(data.phoneNumber).set(phoneNumber)
 
-    resolve();
+    resolve(answerer);
   });
 });
-

@@ -1,8 +1,9 @@
 {
     "new_answerer": {
         "timeout": 5000,
-        "error_state": "error",
-        "in_progress_state": "in_progress",
-        "start_state":"new_answerer"
+        "error_state": "new_answerer_error",
+        "in_progress_state": "new_answerer_in_progress",
+        "start_state": "new_answerer_start",
+        "finished_state": "new_answerer_finished"
     }
 }
